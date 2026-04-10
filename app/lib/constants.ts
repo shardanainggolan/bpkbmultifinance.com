@@ -1,4 +1,4 @@
-export const SITE_URL = "https://bpkbmultifinance.com";
+export const SITE_URL = "https://bpkbmultifinance.id";
 export const SITE_NAME = "BPKB Multi Finance - Agen Resmi Adira Finance";
 export const WA_NUMBER = "6285122682981";
 
