@@ -70,7 +70,7 @@ export default function TentangAdiraSection() {
               </p>
 
               <p>
-                <strong className="text-secondary">bpkbmultifinance.com</strong> adalah
+                <strong className="text-secondary">bpkbmultifinance.id</strong> adalah
                 platform agen resmi yang membantu calon nasabah mengakses layanan{" "}
                 <strong className="text-secondary">
                   Kredit Multiguna Jasa Adira Finance

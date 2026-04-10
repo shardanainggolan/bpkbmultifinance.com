@@ -59,7 +59,7 @@ export default function Footer() {
               />
             </Link>
             <p className="text-slate-300 text-sm leading-relaxed max-w-sm mb-5">
-              <strong className="text-white">bpkbmultifinance.com</strong> adalah
+              <strong className="text-white">bpkbmultifinance.id</strong> adalah
               website milik dan dikelola oleh Agen AXI terdaftar
               di <strong className="text-white">Adira Finance</strong> (PT Adira
               Dinamika Multi Finance Tbk), untuk layanan pinjaman dana dengan
@@ -159,7 +159,7 @@ export default function Footer() {
         <div className="border-t border-white/10 py-8">
           <div className="flex flex-col sm:flex-row items-start justify-between gap-4">
             <div className="text-slate-400 text-xs space-y-1.5">
-              <p>© {year} bpkbmultifinance.com. Hak cipta dilindungi undang-undang.</p>
+              <p>© {year} bpkbmultifinance.id. Hak cipta dilindungi undang-undang.</p>
               <p>
                 <strong className="text-slate-300">Disclaimer:</strong>{" "}
                 Website ini dimiliki dan dikelola oleh Sharda (ID AXI: 012625001169),
