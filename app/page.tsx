@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Navbar from "./components/Navbar";
 import HeroSection from "./components/HeroSection";
 import KeunggulanSection from "./components/KeunggulanSection";
@@ -12,13 +13,37 @@ import CabangPreviewSection from "./components/CabangPreviewSection";
 import CTASection from "./components/CTASection";
 import Footer from "./components/Footer";
 import { getBranches } from "./lib/api";
-import { WA_NUMBER, WA_MESSAGE_DEFAULT } from "./lib/constants";
+import { WA_NUMBER, WA_MESSAGE_DEFAULT, SITE_URL } from "./lib/constants";
+import { webPageSchema } from "./lib/schema";
+
+// Homepage-specific metadata — overrides the layout default for this page only.
+// Title: "Adira Finance" immediately after the primary keyword for entity association.
+export const metadata: Metadata = {
+  title: {
+    // absolute bypasses the template from layout.tsx — prevents double "| Adira Finance" suffix
+    absolute: "Gadai BPKB Adira Finance — Agen Resmi Pinjaman Dana Cepat",
+  },
+  description:
+    "Agen resmi Adira Finance (PT Adira Dinamika Multi Finance Tbk) untuk pinjaman dana gadai BPKB mobil hingga Rp 400 juta dan motor hingga Rp 50 juta. Diawasi OJK, proses 1–2 hari kerja, bunga mulai 0,8%/bulan.",
+  alternates: { canonical: SITE_URL },
+  openGraph: {
+    title: "Gadai BPKB Adira Finance — Agen Resmi Pinjaman Dana Cepat",
+    description:
+      "Agen resmi Adira Finance untuk pinjaman dana gadai BPKB mobil & motor. Diawasi OJK, plafon hingga Rp 400 juta, proses 1–2 hari kerja.",
+    url: SITE_URL,
+  },
+};
 
 export default async function HomePage() {
   const branches = await getBranches();
 
   return (
     <>
+      {/* WebPage JSON-LD — links this page to the Adira Finance entity for Google Knowledge Graph */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema()) }}
+      />
       <Navbar />
 
       <main>

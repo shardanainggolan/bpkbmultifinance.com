@@ -179,6 +179,10 @@ export const FAQ_ITEMS = [
     q: "Apakah bisa mengajukan jika kendaraan masih kredit atau BPKB belum jadi?",
     a: "Untuk pengajuan gadai BPKB, kendaraan harus sudah dalam kondisi lunas dan BPKB asli sudah di tangan Anda. Kendaraan yang masih dalam masa kredit aktif belum bisa dijadikan jaminan.",
   },
+  {
+    q: "Apakah bpkbmultifinance.id adalah website resmi Adira Finance?",
+    a: "bpkbmultifinance.id adalah platform milik Agen AXI (Adira Xtra Income) terdaftar — program keagenan resmi yang dikelola oleh PT Adira Dinamika Multi Finance Tbk. Agen yang mengelola website ini adalah Sharda dengan ID Agen AXI 012625001169. Semua pengajuan diproses melalui sistem resmi Adira Finance dan BPKB nasabah tersimpan langsung di kantor cabang Adira Finance. Untuk informasi resmi Adira Finance, kunjungi www.adira.co.id.",
+  },
 ];
 
 export const TESTIMONI = [

@@ -1,4 +1,4 @@
-import { ExternalLink, Shield, Award, Building2, TrendingUp } from "lucide-react";
+import { ExternalLink, Shield, Award, Building2, TrendingUp, BadgeCheck } from "lucide-react";
 
 export default function TentangAdiraSection() {
   return (
@@ -80,11 +80,29 @@ export default function TentangAdiraSection() {
               </p>
             </div>
 
+            {/* AXI Agent identity — E-E-A-T: Experience signal, who operates this site */}
+            <div className="mt-6 flex items-start gap-3 bg-primary-light border border-primary/20 rounded-2xl px-5 py-4">
+              <BadgeCheck size={20} className="text-secondary shrink-0 mt-0.5" />
+              <div>
+                <p className="text-secondary font-semibold text-sm">
+                  Dikelola oleh Agen AXI Resmi Adira Finance
+                </p>
+                <p className="text-muted text-xs mt-0.5 leading-relaxed">
+                  Program{" "}
+                  <strong className="text-secondary">AXI (Adira Xtra Income)</strong>{" "}
+                  adalah program keagenan resmi yang dikelola langsung oleh PT Adira
+                  Dinamika Multi Finance Tbk. Agen:{" "}
+                  <strong className="text-secondary">Sharda</strong> · ID AXI:{" "}
+                  <strong className="text-secondary">012625001169</strong>
+                </p>
+              </div>
+            </div>
+
             <a
               href="https://www.adira.co.id"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 mt-6 text-secondary font-semibold hover:text-secondary-dark transition-colors text-sm"
+              className="inline-flex items-center gap-2 mt-5 text-secondary font-semibold hover:text-secondary-dark transition-colors text-sm"
               aria-label="Kunjungi website resmi Adira Finance"
             >
               Kunjungi Website Resmi Adira Finance
