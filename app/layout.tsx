@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { organizationSchema, websiteSchema } from "./lib/schema";
 import { SITE_URL, SITE_NAME, WA_NUMBER, WA_MESSAGE_DEFAULT } from "./lib/constants";
+import GoogleAnalytics from "./components/GoogleAnalytics";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -78,9 +79,12 @@ export default function RootLayout({
   return (
     <html lang="id" className={inter.variable}>
       <head>
-        {/* Preconnect untuk domain gambar cabang — mengurangi latency LCP pada halaman cabang */}
+        {/* Preconnect: domain gambar cabang */}
         <link rel="preconnect" href="https://backend.adiracabang.id" />
         <link rel="dns-prefetch" href="https://backend.adiracabang.id" />
+        {/* Preconnect: Google Analytics — kurangi latency saat script GA dimuat */}
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -96,6 +100,8 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen flex flex-col antialiased">
         {children}
+        {/* Google Analytics — afterInteractive, tidak blok rendering */}
+        <GoogleAnalytics />
         {/* WhatsApp floating button — tampil di semua halaman */}
         <a
           href={`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(WA_MESSAGE_DEFAULT)}`}

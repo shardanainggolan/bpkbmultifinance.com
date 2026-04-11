@@ -118,6 +118,80 @@ export function financialProductMotorSchema() {
   };
 }
 
+export function webPageSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${SITE_URL}/#webpage`,
+    url: SITE_URL,
+    name: "Gadai BPKB Adira Finance — Agen Resmi",
+    description:
+      "Platform agen resmi Adira Finance untuk layanan pinjaman dana gadai BPKB mobil dan motor di seluruh Indonesia.",
+    isPartOf: { "@id": `${SITE_URL}/#website` },
+    // Explicit entity disambiguation: halaman ini TENTANG PT Adira Dinamika Multi Finance Tbk
+    about: [
+      {
+        "@type": "Organization",
+        name: "PT Adira Dinamika Multi Finance Tbk",
+        sameAs: [
+          "https://www.adira.co.id",
+          "https://id.wikipedia.org/wiki/Adira_Dinamika_Multi_Finance",
+          "https://www.idx.co.id/id/perusahaan-tercatat/profil-perusahaan-tercatat/?kodeEmiten=ADMF",
+        ],
+      },
+      {
+        "@type": "FinancialProduct",
+        name: "Kredit Multiguna Jaminan BPKB",
+        provider: {
+          "@type": "Organization",
+          name: "PT Adira Dinamika Multi Finance Tbk",
+          sameAs: "https://www.adira.co.id",
+        },
+      },
+    ],
+    mentions: [
+      {
+        "@type": "Organization",
+        name: "OJK — Otoritas Jasa Keuangan",
+        sameAs: "https://ojk.go.id",
+      },
+      {
+        "@type": "Organization",
+        name: "Bank Danamon Indonesia",
+        sameAs: "https://www.danamon.co.id",
+      },
+      {
+        "@type": "Organization",
+        name: "MUFG — Mitsubishi UFJ Financial Group",
+        sameAs: "https://www.mufg.jp",
+      },
+    ],
+    // Author = agen yang mengelola website ini (E-E-A-T: Experience + Authoritativeness)
+    author: {
+      "@type": "Person",
+      name: "Sharda",
+      identifier: "ID AXI 012625001169",
+      affiliation: {
+        "@type": "Organization",
+        name: "PT Adira Dinamika Multi Finance Tbk",
+        url: "https://www.adira.co.id",
+      },
+    },
+    publisher: { "@id": `${SITE_URL}/#organization` },
+    breadcrumb: {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Beranda",
+          item: SITE_URL,
+        },
+      ],
+    },
+  };
+}
+
 export function faqSchema(
   items: Array<{ q: string; a: string }>
 ) {
@@ -152,12 +226,15 @@ export function breadcrumbSchema(
 
 export function localBusinessSchema(branch: Branch) {
   const phones = [branch.telp1, branch.telp2, branch.telp3].filter(Boolean);
+  // Extract the short location name from branch name: "Adira Finance Daan Mogot" → "Daan Mogot"
+  const locationName = branch.name.replace(/^Adira\s+Finance\s+/i, "").trim();
   return {
     "@context": "https://schema.org",
     "@type": "FinancialService",
     "@id": `${SITE_URL}/cabang/${branch.slug}#localbusiness`,
     name: branch.name,
-    alternateName: `Adira Finance ${branch.region.district.district}`,
+    // Colloquial alias: how people actually search — "adira daan mogot" not "adira finance daan mogot"
+    alternateName: `Adira ${locationName}`,
     description: branch.description,
     image: branch.image
       ? `https://backend.adiracabang.id/uploads/${branch.image}`
@@ -206,11 +283,24 @@ export function localBusinessSchema(branch: Branch) {
         "https://www.idx.co.id/id/perusahaan-tercatat/profil-perusahaan-tercatat/?kodeEmiten=ADMF",
       ],
     },
+    hasMap: branch.gmapsLink || undefined,
     areaServed: [
+      // Most granular first — this is what searchers type ("adira daan mogot", "adira depok")
+      {
+        "@type": "Place",
+        name: locationName,
+      },
+      // Kecamatan / kelurahan level
+      {
+        "@type": "AdministrativeArea",
+        name: branch.region.subDistrict.subDistrict,
+      },
+      // Kabupaten / kota
       {
         "@type": "AdministrativeArea",
         name: branch.region.district.district,
       },
+      // Province
       {
         "@type": "AdministrativeArea",
         name: branch.region.province.province,

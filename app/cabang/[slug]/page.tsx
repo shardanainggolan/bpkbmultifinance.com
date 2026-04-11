@@ -14,6 +14,12 @@ type Props = {
   params: Promise<{ slug: string }>;
 };
 
+// Extract the short location name: "Adira Finance Daan Mogot" → "Daan Mogot"
+// This matches how people search: "adira daan mogot", "adira depok", "adira alam sutera"
+function getLocationName(branchName: string): string {
+  return branchName.replace(/^Adira\s+Finance\s+/i, "").trim();
+}
+
 export async function generateStaticParams() {
   const branches = await getBranches();
   return branches.map((b) => ({ slug: b.slug }));
@@ -29,8 +35,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   }
 
-  const title = `Gadai BPKB Mobil & Motor di ${branch.name} | Adira Finance`;
-  const description = `${branch.description}. Alamat: ${branch.address}, ${branch.region.district.district}, ${branch.region.province.province}. ${branch.telp1 ? `Telp: ${branch.telp1}.` : ""} Ajukan pinjaman dana gadai BPKB sekarang.`;
+  const locationName = getLocationName(branch.name);
+  const district = branch.region.district.district;
+  const province = branch.region.province.province;
+  // Title: brand + location first — matches navigational intent "adira daan mogot", "adira depok"
+  const title = `${branch.name} - Gadai BPKB Mobil & Motor | Adira Finance`;
+  const description = `Ajukan pinjaman gadai BPKB di ${branch.name}, ${locationName}. ${branch.description} Alamat: ${branch.address}, ${district}, ${province}.${branch.telp1 ? ` Telp: ${branch.telp1}.` : ""} Proses 1–2 hari kerja.`;
 
   return {
     title,
@@ -69,6 +79,7 @@ export default async function BranchDetailPage({ params }: Props) {
     { name: branch.name, url: `${SITE_URL}/cabang/${branch.slug}` },
   ]);
 
+  const locationName = getLocationName(branch.name);
   const district = branch.region.district.district;
   const province = branch.region.province.province;
 
@@ -78,19 +89,19 @@ export default async function BranchDetailPage({ params }: Props) {
       a: `Gadai BPKB adalah pinjaman dana tunai dengan jaminan BPKB (Bukti Pemilikan Kendaraan Bermotor) mobil atau motor Anda. Di ${branch.name}, kendaraan tetap dapat digunakan sehari-hari selama masa pinjaman — hanya dokumen BPKB yang diserahkan sebagai agunan kepada Adira Finance.`,
     },
     {
-      q: `Berapa plafon pinjaman gadai BPKB di ${branch.name}?`,
-      a: `Plafon pinjaman gadai BPKB di ${branch.name} mencapai Rp 400 juta untuk BPKB mobil dan Rp 50 juta untuk BPKB motor. Besarnya plafon ditentukan berdasarkan nilai pasar kendaraan dan hasil survei kondisi kendaraan di wilayah ${district}.`,
+      q: `Berapa plafon pinjaman gadai BPKB di ${locationName}?`,
+      a: `Plafon pinjaman gadai BPKB di ${branch.name} mencapai Rp 400 juta untuk BPKB mobil dan Rp 50 juta untuk BPKB motor. Besarnya plafon ditentukan berdasarkan nilai pasar kendaraan dan hasil survei kondisi kendaraan di ${locationName}.`,
     },
     {
-      q: `Apa saja syarat dokumen gadai BPKB di ${district}?`,
-      a: `Syarat gadai BPKB di ${branch.name}: KTP asli, BPKB asli kendaraan, STNK aktif, Kartu Keluarga (KK), slip gaji atau rekening koran 3 bulan terakhir, dan foto kendaraan. Semua dokumen harus atas nama pemohon atau dilengkapi surat kuasa resmi.`,
+      q: `Apa saja syarat dokumen gadai BPKB di ${locationName}?`,
+      a: `Syarat gadai BPKB di ${locationName}: KTP asli, BPKB asli kendaraan, STNK aktif, Kartu Keluarga (KK), slip gaji atau rekening koran 3 bulan terakhir, dan foto kendaraan. Semua dokumen harus atas nama pemohon atau dilengkapi surat kuasa resmi.`,
     },
     {
-      q: `Berapa lama proses pencairan dana gadai BPKB di ${branch.name}?`,
-      a: `Proses pencairan dana gadai BPKB di ${branch.name} membutuhkan waktu 1–2 hari kerja setelah dokumen dinyatakan lengkap dan kendaraan selesai disurvei. Survei kendaraan dilakukan langsung di lokasi Anda di wilayah ${district}.`,
+      q: `Berapa lama proses pencairan dana gadai BPKB di ${locationName}?`,
+      a: `Proses pencairan dana gadai BPKB di ${branch.name} membutuhkan waktu 1–2 hari kerja setelah dokumen dinyatakan lengkap dan kendaraan selesai disurvei. Survei kendaraan dilakukan langsung di lokasi Anda di ${locationName}.`,
     },
     {
-      q: `Berapa bunga pinjaman gadai BPKB Adira Finance di ${district}?`,
+      q: `Berapa bunga pinjaman gadai BPKB Adira Finance di ${locationName}?`,
       a: `Bunga pinjaman gadai BPKB Adira Finance mulai dari 0,8% per bulan (flat), dengan tenor 12–48 bulan untuk BPKB mobil dan 6–36 bulan untuk BPKB motor. Besaran bunga akhir ditentukan berdasarkan profil kredit pemohon dan nilai kendaraan yang dijaminkan.`,
     },
     {
@@ -98,8 +109,8 @@ export default async function BranchDetailPage({ params }: Props) {
       a: `${branch.name} adalah cabang resmi PT Adira Dinamika Multi Finance Tbk yang terdaftar dan diawasi oleh OJK (Otoritas Jasa Keuangan). Adira Finance telah beroperasi sejak 1990, merupakan bagian dari Bank Danamon dan MUFG Group, dan melayani jutaan nasabah di seluruh Indonesia.`,
     },
     {
-      q: `Bagaimana cara mengajukan pinjaman gadai BPKB di ${branch.name}?`,
-      a: `Cara mengajukan gadai BPKB di ${branch.name}: (1) Hubungi agen via WhatsApp untuk konsultasi gratis, (2) Kirimkan foto dokumen untuk pra-analisa, (3) Jadwalkan survei kendaraan di ${district}, (4) Tanda tangani perjanjian kredit, (5) Dana cair dalam 1–2 hari kerja.`,
+      q: `Bagaimana cara mengajukan pinjaman gadai BPKB di ${locationName}?`,
+      a: `Cara mengajukan gadai BPKB di ${branch.name}: (1) Hubungi agen via WhatsApp untuk konsultasi gratis, (2) Kirimkan foto dokumen untuk pra-analisa, (3) Jadwalkan survei kendaraan di ${locationName}, (4) Tanda tangani perjanjian kredit, (5) Dana cair dalam 1–2 hari kerja.`,
     },
     {
       q: `Di mana lokasi dan jam operasional ${branch.name}?`,
@@ -157,8 +168,9 @@ export default async function BranchDetailPage({ params }: Props) {
             </div>
 
             <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-3 wrap-break-word">
-              Pinjaman Gadai BPKB di{" "}
-              <span className="text-primary">{branch.name}</span>
+              Adira Finance{" "}
+              <span className="text-primary">{locationName}</span>
+              {" "}— Gadai BPKB Mobil & Motor
             </h1>
             <p className="text-slate-300 max-w-2xl wrap-break-word">{branch.description}</p>
           </div>
@@ -228,7 +240,7 @@ export default async function BranchDetailPage({ params }: Props) {
                 <p className="text-muted text-sm leading-relaxed mb-6">
                   {branch.name} melayani pengajuan pinjaman dana tunai dengan
                   jaminan BPKB mobil dan motor melalui Adira Finance — proses
-                  mudah, dana cair 1–2 hari kerja di wilayah {district}.
+                  mudah, dana cair 1–2 hari kerja di {locationName}.
                 </p>
                 <div className="grid sm:grid-cols-2 gap-4">
                   {[
@@ -289,7 +301,7 @@ export default async function BranchDetailPage({ params }: Props) {
               {/* Syarat & Cara Pengajuan */}
               <div className="bg-white rounded-3xl border border-gray-100 p-7 shadow-sm">
                 <h2 className="text-xl font-bold text-secondary mb-3">
-                  Syarat Gadai BPKB di {district}
+                  Syarat Gadai BPKB di {locationName}
                 </h2>
                 <p className="text-muted text-sm leading-relaxed mb-5">
                   Persyaratan pengajuan gadai BPKB di{" "}
@@ -330,7 +342,7 @@ export default async function BranchDetailPage({ params }: Props) {
                     },
                     {
                       step: "Survei Kendaraan",
-                      desc: `Tim Adira Finance datang ke lokasi Anda di ${district} untuk survei kendaraan.`,
+                      desc: `Tim Adira Finance datang ke lokasi Anda di ${locationName} untuk survei kendaraan.`,
                     },
                     {
                       step: "Akad & Pencairan",
@@ -473,7 +485,7 @@ export default async function BranchDetailPage({ params }: Props) {
             </h2>
             <p className="text-muted text-sm mb-8">
               Jawaban lengkap untuk pertanyaan yang paling sering ditanyakan
-              seputar layanan gadai BPKB di {district}.
+              seputar layanan gadai BPKB di {locationName}.
             </p>
             <div className="space-y-4">
               {faqItems.map((item, i) => (
