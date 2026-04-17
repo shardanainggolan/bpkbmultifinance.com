@@ -18,3 +18,24 @@ jobs:
           username: ${{ secrets.USER }}
           key: ${{ secrets.KEY }}
           script: sh /home/ubuntu/deploy_scripts/deploy_bpkbmultifinance.id.sh
+
+      # Tunggu sampai server selesai build + restart (Next.js build bisa 2-4 menit)
+      # Retry setiap 60 detik, maksimal 6 kali (6 menit total)
+      - name: Submit URLs to IndexNow (after deploy)
+        env:
+          INDEXNOW_SECRET: ${{ secrets.INDEXNOW_SECRET }}
+        run: |
+          echo "Waiting for server to finish building and restarting..."
+          for i in {1..6}; do
+            sleep 60
+            echo "Attempt $i: calling IndexNow API..."
+            HTTP_STATUS=$(curl -s -o /tmp/indexnow_response.json -w "%{http_code}" \
+              "https://bpkbmultifinance.id/api/indexnow?secret=${INDEXNOW_SECRET}")
+            echo "HTTP status: $HTTP_STATUS"
+            if [ "$HTTP_STATUS" = "200" ]; then
+              echo "IndexNow submission successful!"
+              cat /tmp/indexnow_response.json
+              break
+            fi
+            echo "Not ready yet (status: $HTTP_STATUS), retrying in 60s..."
+          done
