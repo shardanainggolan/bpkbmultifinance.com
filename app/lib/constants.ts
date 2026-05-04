@@ -29,18 +29,18 @@ export const NAV_LINKS = [
 export const KEUNGGULAN = [
   {
     icon: "Zap",
-    title: "Proses Cepat 1-2 Hari",
-    desc: "Dari pengajuan dokumen hingga dana cair ke rekening Anda hanya dalam 1-2 hari kerja.",
+    title: "Proses Cepat 1-3 Hari",
+    desc: "Dari pengajuan dokumen hingga dana cair ke rekening Anda hanya dalam 1-3 hari kerja.",
   },
   {
     icon: "TrendingDown",
-    title: "Bunga Kompetitif",
-    desc: "Nikmati suku bunga mulai dari 0,8% per bulan, jauh lebih rendah dibanding pinjaman konvensional.",
+    title: "Bunga Tetap Kompetitif",
+    desc: "Nikmati bunga tetap mulai dari 1,66% per bulan — transparan, tidak berubah selama tenor.",
   },
   {
     icon: "Calendar",
     title: "Tenor Fleksibel",
-    desc: "Pilih tenor cicilan sesuai kemampuan Anda, mulai dari 6 bulan hingga 48 bulan.",
+    desc: "Pilih tenor cicilan sesuai kemampuan Anda, mulai dari 12 bulan hingga 60 bulan.",
   },
   {
     icon: "Shield",
@@ -67,10 +67,10 @@ export const PRODUK = [
     icon: "Car",
     highlight: "Hingga Rp 400 Juta",
     features: [
-      { label: "Plafon Pinjaman", value: "Rp 5 juta – Rp 400 juta" },
-      { label: "Tenor", value: "12 – 48 bulan" },
+      { label: "Plafon Pinjaman", value: "Rp 20 juta – Rp 400 juta" },
+      { label: "Tenor", value: "12 – 60 bulan" },
       { label: "Usia Kendaraan", value: "Maksimal 15 tahun" },
-      { label: "Proses", value: "1-2 hari kerja" },
+      { label: "Proses", value: "1-3 hari kerja" },
       { label: "Pencairan", value: "Transfer ke rekening" },
     ],
     desc: "Pinjaman dana tunai dengan jaminan BPKB mobil untuk berbagai kebutuhan: modal usaha, renovasi rumah, biaya pendidikan, atau kebutuhan mendesak lainnya.",
@@ -82,10 +82,10 @@ export const PRODUK = [
     icon: "Bike",
     highlight: "Hingga Rp 50 Juta",
     features: [
-      { label: "Plafon Pinjaman", value: "Rp 2 juta – Rp 50 juta" },
-      { label: "Tenor", value: "6 – 36 bulan" },
+      { label: "Plafon Pinjaman", value: "Rp 3 juta – Rp 50 juta" },
+      { label: "Tenor", value: "12 – 36 bulan" },
       { label: "Usia Kendaraan", value: "Maksimal 10 tahun" },
-      { label: "Proses", value: "1-2 hari kerja" },
+      { label: "Proses", value: "1-3 hari kerja" },
       { label: "Pencairan", value: "Transfer ke rekening" },
     ],
     desc: "Solusi pinjaman cepat dengan jaminan BPKB motor. Tidak perlu agunan lain, cukup BPKB motor Anda dan dana bisa segera cair.",
@@ -157,7 +157,7 @@ export const FAQ_ITEMS = [
   },
   {
     q: "Berapa lama proses pencairan pinjaman gadai BPKB?",
-    a: "Proses pencairan berlangsung 1-2 hari kerja sejak dokumen lengkap diterima dan survei kendaraan selesai dilakukan. Ini menjadikan gadai BPKB Adira Finance sebagai solusi tercepat untuk kebutuhan dana mendesak.",
+    a: "Proses pencairan berlangsung 1-3 hari kerja sejak dokumen lengkap diterima dan survei kendaraan selesai dilakukan. Ini menjadikan gadai BPKB Adira Finance sebagai solusi cepat untuk kebutuhan dana mendesak.",
   },
   {
     q: "Berapa plafon pinjaman maksimal yang bisa saya dapatkan?",

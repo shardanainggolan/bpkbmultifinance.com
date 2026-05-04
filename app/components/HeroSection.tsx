@@ -54,14 +54,14 @@ export default function HeroSection() {
               Pinjaman dana tunai dengan jaminan BPKB mobil atau motor melalui{" "}
               <strong className="text-white">Adira Finance</strong> — perusahaan
               pembiayaan terpercaya diawasi OJK. Proses mudah, dana cair{" "}
-              <strong className="text-primary">1-2 hari kerja</strong>.
+              <strong className="text-primary">1-3 hari kerja</strong>.
             </p>
 
             {/* Trust badges */}
             <div className="flex flex-wrap gap-4 mb-10">
               <div className="flex items-center gap-2 bg-white/10 rounded-lg px-4 py-2">
                 <Clock size={16} className="text-primary" />
-                <span className="text-sm font-medium">Proses 1-2 Hari Kerja</span>
+                <span className="text-sm font-medium">Proses 1-3 Hari Kerja</span>
               </div>
               <div className="flex items-center gap-2 bg-white/10 rounded-lg px-4 py-2">
                 <Shield size={16} className="text-primary" />
@@ -109,8 +109,8 @@ export default function HeroSection() {
                 {[
                   { label: "Plafon Pinjaman", value: "Hingga Rp 400 Juta", sub: "BPKB Mobil" },
                   { label: "Plafon Pinjaman", value: "Hingga Rp 50 Juta", sub: "BPKB Motor" },
-                  { label: "Tenor Cicilan", value: "Hingga 48 Bulan", sub: "Fleksibel sesuai kebutuhan" },
-                  { label: "Proses Pencairan", value: "1-2 Hari Kerja", sub: "Cepat & transparan" },
+                  { label: "Tenor Cicilan", value: "Hingga 60 Bulan", sub: "Fleksibel sesuai kebutuhan" },
+                  { label: "Proses Pencairan", value: "1-3 Hari Kerja", sub: "Cepat & transparan" },
                 ].map((item, i) => (
                   <div
                     key={i}
@@ -141,8 +141,8 @@ export default function HeroSection() {
           {[
             { value: "Rp 400 Jt", label: "Maks. BPKB Mobil" },
             { value: "Rp 50 Jt", label: "Maks. BPKB Motor" },
-            { value: "48 Bulan", label: "Tenor Maks." },
-            { value: "1-2 Hari", label: "Proses Cair" },
+            { value: "60 Bulan", label: "Tenor Maks." },
+            { value: "1-3 Hari", label: "Proses Cair" },
           ].map((s, i) => (
             <div
               key={i}

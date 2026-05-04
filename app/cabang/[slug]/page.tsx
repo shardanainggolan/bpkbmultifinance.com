@@ -40,7 +40,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const province = branch.region.province.province;
   // Title: brand + location first — matches navigational intent "adira daan mogot", "adira depok"
   const title = `${branch.name} - Gadai BPKB Mobil & Motor | Adira Finance`;
-  const description = `Ajukan pinjaman gadai BPKB di ${branch.name}, ${locationName}. ${branch.description} Alamat: ${branch.address}, ${district}, ${province}.${branch.telp1 ? ` Telp: ${branch.telp1}.` : ""} Proses 1–2 hari kerja.`;
+  const description = `Ajukan pinjaman gadai BPKB di ${branch.name}, ${locationName}. ${branch.description} Alamat: ${branch.address}, ${district}, ${province}.${branch.telp1 ? ` Telp: ${branch.telp1}.` : ""} Proses 1–3 hari kerja.`;
 
   return {
     title,
@@ -98,11 +98,11 @@ export default async function BranchDetailPage({ params }: Props) {
     },
     {
       q: `Berapa lama proses pencairan dana gadai BPKB di ${locationName}?`,
-      a: `Proses pencairan dana gadai BPKB di ${branch.name} membutuhkan waktu 1–2 hari kerja setelah dokumen dinyatakan lengkap dan kendaraan selesai disurvei. Survei kendaraan dilakukan langsung di lokasi Anda di ${locationName}.`,
+      a: `Proses pencairan dana gadai BPKB di ${branch.name} membutuhkan waktu 1–3 hari kerja setelah dokumen dinyatakan lengkap dan kendaraan selesai disurvei. Survei kendaraan dilakukan langsung di lokasi Anda di ${locationName}.`,
     },
     {
       q: `Berapa bunga pinjaman gadai BPKB Adira Finance di ${locationName}?`,
-      a: `Bunga pinjaman gadai BPKB Adira Finance mulai dari 0,8% per bulan (flat), dengan tenor 12–48 bulan untuk BPKB mobil dan 6–36 bulan untuk BPKB motor. Besaran bunga akhir ditentukan berdasarkan profil kredit pemohon dan nilai kendaraan yang dijaminkan.`,
+      a: `Bunga pinjaman gadai BPKB Adira Finance adalah bunga tetap mulai 1,66% per bulan, dengan tenor 12–60 bulan untuk BPKB mobil dan 12–36 bulan untuk BPKB motor. Besaran bunga akhir ditentukan berdasarkan profil kredit pemohon dan nilai kendaraan yang dijaminkan.`,
     },
     {
       q: `Apakah ${branch.name} aman dan terpercaya untuk gadai BPKB?`,
@@ -110,7 +110,7 @@ export default async function BranchDetailPage({ params }: Props) {
     },
     {
       q: `Bagaimana cara mengajukan pinjaman gadai BPKB di ${locationName}?`,
-      a: `Cara mengajukan gadai BPKB di ${branch.name}: (1) Hubungi agen via WhatsApp untuk konsultasi gratis, (2) Kirimkan foto dokumen untuk pra-analisa, (3) Jadwalkan survei kendaraan di ${locationName}, (4) Tanda tangani perjanjian kredit, (5) Dana cair dalam 1–2 hari kerja.`,
+      a: `Cara mengajukan gadai BPKB di ${branch.name}: (1) Hubungi agen via WhatsApp untuk konsultasi gratis, (2) Kirimkan foto dokumen untuk pra-analisa, (3) Jadwalkan survei kendaraan di ${locationName}, (4) Tanda tangani perjanjian kredit, (5) Dana cair dalam 1–3 hari kerja.`,
     },
     {
       q: `Di mana lokasi dan jam operasional ${branch.name}?`,
@@ -240,20 +240,20 @@ export default async function BranchDetailPage({ params }: Props) {
                 <p className="text-muted text-sm leading-relaxed mb-6">
                   {branch.name} melayani pengajuan pinjaman dana tunai dengan
                   jaminan BPKB mobil dan motor melalui Adira Finance — proses
-                  mudah, dana cair 1–2 hari kerja di {locationName}.
+                  mudah, dana cair 1–3 hari kerja di {locationName}.
                 </p>
                 <div className="grid sm:grid-cols-2 gap-4">
                   {[
                     {
                       title: "Gadai BPKB Mobil",
                       plafon: "Hingga Rp 400 Juta",
-                      tenor: "12–48 Bulan",
+                      tenor: "12–60 Bulan",
                       desc: "Kendaraan roda empat",
                     },
                     {
                       title: "Gadai BPKB Motor",
                       plafon: "Hingga Rp 50 Juta",
-                      tenor: "6–36 Bulan",
+                      tenor: "12–36 Bulan",
                       desc: "Kendaraan roda dua",
                     },
                   ].map((p) => (
@@ -283,13 +283,13 @@ export default async function BranchDetailPage({ params }: Props) {
                         <div className="flex justify-between text-xs">
                           <span className="text-muted">Bunga mulai</span>
                           <span className="font-semibold text-secondary">
-                            0,8% / bulan
+                            1,66% / bulan
                           </span>
                         </div>
                         <div className="flex justify-between text-xs">
                           <span className="text-muted">Proses cair</span>
                           <span className="font-semibold text-secondary">
-                            1–2 hari kerja
+                            1–3 hari kerja
                           </span>
                         </div>
                       </div>
@@ -346,7 +346,7 @@ export default async function BranchDetailPage({ params }: Props) {
                     },
                     {
                       step: "Akad & Pencairan",
-                      desc: "Tanda tangani perjanjian kredit dan dana cair ke rekening Anda dalam 1–2 hari kerja.",
+                      desc: "Tanda tangani perjanjian kredit dan dana cair ke rekening Anda dalam 1–3 hari kerja.",
                     },
                   ].map((s, i) => (
                     <li key={i} className="flex items-start gap-3">
@@ -420,7 +420,7 @@ export default async function BranchDetailPage({ params }: Props) {
                 <p className="text-slate-300 text-sm mb-6 leading-relaxed">
                   Gadaikan BPKB mobil atau motor Anda di{" "}
                   <strong className="text-white">{branch.name}</strong>. Dana
-                  cair 1-2 hari kerja.
+                  cair 1-3 hari kerja.
                 </p>
 
                 <a

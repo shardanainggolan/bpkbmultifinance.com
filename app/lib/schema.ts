@@ -82,13 +82,13 @@ export function financialProductMobilSchema() {
       url: "https://www.adira.co.id",
     },
     description:
-      "Pinjaman dana tunai dengan jaminan BPKB mobil melalui Adira Finance. Plafon hingga Rp 400 juta, tenor 12-48 bulan, proses 1-2 hari kerja.",
+      "Pinjaman dana tunai dengan jaminan BPKB mobil melalui Adira Finance. Plafon Rp 20 juta–Rp 400 juta, tenor 12–60 bulan, proses 1–3 hari kerja.",
     category: "Kredit Multiguna",
-    feesAndCommissionsSpecification: "Bunga mulai 0,8% per bulan (flat)",
+    feesAndCommissionsSpecification: "Bunga tetap mulai 1,66% per bulan",
     amount: {
       "@type": "MonetaryAmount",
       currency: "IDR",
-      minValue: 5000000,
+      minValue: 20000000,
       maxValue: 400000000,
     },
   };
@@ -106,13 +106,13 @@ export function financialProductMotorSchema() {
       url: "https://www.adira.co.id",
     },
     description:
-      "Pinjaman dana tunai dengan jaminan BPKB motor melalui Adira Finance. Plafon hingga Rp 50 juta, tenor 6-36 bulan, proses 1-2 hari kerja.",
+      "Pinjaman dana tunai dengan jaminan BPKB motor melalui Adira Finance. Plafon Rp 3 juta–Rp 50 juta, tenor 12–36 bulan, proses 1–3 hari kerja.",
     category: "Kredit Multiguna",
-    feesAndCommissionsSpecification: "Bunga mulai 0,8% per bulan (flat)",
+    feesAndCommissionsSpecification: "Bunga tetap mulai 1,66% per bulan",
     amount: {
       "@type": "MonetaryAmount",
       currency: "IDR",
-      minValue: 2000000,
+      minValue: 3000000,
       maxValue: 50000000,
     },
   };
@@ -323,7 +323,7 @@ export function localBusinessSchema(branch: Branch) {
             "@type": "FinancialProduct",
             name: "Gadai BPKB Mobil",
             description:
-              "Pinjaman dana tunai dengan jaminan BPKB mobil. Plafon hingga Rp 400 juta, tenor 12–48 bulan, bunga mulai 0,8% per bulan.",
+              "Pinjaman dana tunai dengan jaminan BPKB mobil. Plafon Rp 20 juta–Rp 400 juta, tenor 12–60 bulan, bunga tetap mulai 1,66% per bulan.",
           },
         },
         {
@@ -332,7 +332,7 @@ export function localBusinessSchema(branch: Branch) {
             "@type": "FinancialProduct",
             name: "Gadai BPKB Motor",
             description:
-              "Pinjaman dana tunai dengan jaminan BPKB motor. Plafon hingga Rp 50 juta, tenor 6–36 bulan, bunga mulai 0,8% per bulan.",
+              "Pinjaman dana tunai dengan jaminan BPKB motor. Plafon Rp 3 juta–Rp 50 juta, tenor 12–36 bulan, bunga tetap mulai 1,66% per bulan.",
           },
         },
       ],

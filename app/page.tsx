@@ -24,12 +24,12 @@ export const metadata: Metadata = {
     absolute: "Gadai BPKB Adira Finance — Agen Resmi Pinjaman Dana Cepat",
   },
   description:
-    "Agen resmi Adira Finance (PT Adira Dinamika Multi Finance Tbk) untuk pinjaman dana gadai BPKB mobil hingga Rp 400 juta dan motor hingga Rp 50 juta. Diawasi OJK, proses 1–2 hari kerja, bunga mulai 0,8%/bulan.",
+    "Agen resmi Adira Finance (PT Adira Dinamika Multi Finance Tbk) untuk pinjaman dana gadai BPKB mobil hingga Rp 400 juta dan motor hingga Rp 50 juta. Diawasi OJK, proses 1–3 hari kerja, bunga tetap mulai 1,66%/bulan.",
   alternates: { canonical: SITE_URL },
   openGraph: {
     title: "Gadai BPKB Adira Finance — Agen Resmi Pinjaman Dana Cepat",
     description:
-      "Agen resmi Adira Finance untuk pinjaman dana gadai BPKB mobil & motor. Diawasi OJK, plafon hingga Rp 400 juta, proses 1–2 hari kerja.",
+      "Agen resmi Adira Finance untuk pinjaman dana gadai BPKB mobil & motor. Diawasi OJK, plafon hingga Rp 400 juta, proses 1–3 hari kerja.",
     url: SITE_URL,
   },
 };

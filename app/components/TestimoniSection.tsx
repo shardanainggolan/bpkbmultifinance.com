@@ -79,7 +79,7 @@ export default function TestimoniSection() {
             { number: "10.000+", label: "Nasabah Puas" },
             { number: "400+", label: "Cabang Adira Finance" },
             { number: "30+ Tahun", label: "Pengalaman Adira" },
-            { number: "1-2 Hari", label: "Proses Pencairan" },
+            { number: "1-3 Hari", label: "Proses Pencairan" },
           ].map((s, i) => (
             <div key={i} className="text-center py-6 px-4 bg-secondary rounded-2xl">
               <p className="text-primary text-2xl font-bold mb-1">{s.number}</p>

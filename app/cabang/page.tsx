@@ -4,6 +4,7 @@ import { MapPin, ChevronRight } from "lucide-react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import BranchSearch from "../components/BranchSearch";
+import BranchMap from "../components/BranchMap";
 import { getBranches } from "../lib/api";
 import { breadcrumbSchema } from "../lib/schema";
 import { SITE_URL } from "../lib/constants";
@@ -25,6 +26,20 @@ export const metadata: Metadata = {
 
 export default async function CabangPage() {
   const branches = await getBranches();
+
+  // Extract minimal pin data for the map — avoids serializing full Branch objects twice
+  const mapPins = branches
+    .filter((b) => b.latitude && b.longitude)
+    .map((b) => ({
+      branchId: b.branchId,
+      name: b.name,
+      slug: b.slug,
+      address: b.address,
+      latitude: b.latitude,
+      longitude: b.longitude,
+      district: b.region.district.district,
+      province: b.region.province.province,
+    }));
 
   const breadcrumb = breadcrumbSchema([
     { name: "Beranda", url: SITE_URL },
@@ -71,7 +86,7 @@ export default async function CabangPage() {
               {[
                 { value: `${branches.length > 0 ? branches.length + "+" : "400+"}`, label: "Cabang" },
                 { value: "33", label: "Provinsi" },
-                { value: "1-2 Hari", label: "Proses Cair" },
+                { value: "1-3 Hari", label: "Proses Cair" },
               ].map((s, i) => (
                 <div key={i} className="flex items-center gap-2">
                   <MapPin size={16} className="text-primary" />
@@ -82,6 +97,9 @@ export default async function CabangPage() {
             </div>
           </div>
         </section>
+
+        {/* Interactive map */}
+        {mapPins.length > 0 && <BranchMap pins={mapPins} />}
 
         {/* Branch list */}
         <section className="py-14 bg-muted-light">

@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     template: "%s | Adira Finance - BPKB Multi Finance",
   },
   description:
-    "Ajukan pinjaman dana tunai dengan jaminan gadai BPKB mobil atau motor di Adira Finance. Proses cepat 1-2 hari kerja, bunga kompetitif, tenor fleksibel hingga 48 bulan. Agen resmi Adira Finance.",
+    "Ajukan pinjaman dana tunai dengan jaminan gadai BPKB mobil atau motor di Adira Finance. Proses cepat 1-3 hari kerja, bunga tetap mulai 1,66%/bulan, tenor fleksibel hingga 60 bulan. Agen resmi Adira Finance.",
   keywords: [
     "gadai bpkb",
     "pinjaman bpkb",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Pinjaman Dana Gadai BPKB Mobil & Motor - Adira Finance",
     description:
-      "Butuh dana cepat? Gadaikan BPKB mobil atau motor Anda di Adira Finance. Agen resmi, proses mudah, dana cair 1-2 hari kerja.",
+      "Butuh dana cepat? Gadaikan BPKB mobil atau motor Anda di Adira Finance. Agen resmi, proses mudah, dana cair 1-3 hari kerja.",
     url: SITE_URL,
     siteName: SITE_NAME,
     locale: "id_ID",
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Gadai BPKB Mobil & Motor | Adira Finance",
     description:
-      "Pinjaman dana cepat dengan jaminan BPKB mobil atau motor. Proses 1-2 hari kerja. Agen resmi Adira Finance.",
+      "Pinjaman dana dengan jaminan BPKB mobil atau motor. Proses 1-3 hari kerja. Agen resmi Adira Finance.",
   },
   alternates: {
     canonical: SITE_URL,
