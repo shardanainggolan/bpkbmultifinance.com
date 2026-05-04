@@ -84,6 +84,41 @@ section[id] {
   background-clip: text;
 }
 
+/* User location dot pulse (used by BranchMapLeaflet divIcon) */
+@keyframes pulse-user {
+  0%   { transform: scale(1);   opacity: 0.6; }
+  70%  { transform: scale(2.8); opacity: 0;   }
+  100% { transform: scale(2.8); opacity: 0;   }
+}
+
+/* Leaflet popup — modern card look */
+.branch-popup .leaflet-popup-content-wrapper {
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(30, 58, 95, 0.15);
+  border: 1px solid #e2e8f0;
+  padding: 0;
+  overflow: hidden;
+}
+.branch-popup .leaflet-popup-content {
+  margin: 0;
+  padding: 14px 16px;
+}
+.branch-popup .leaflet-popup-tip {
+  background: #ffffff;
+  box-shadow: none;
+}
+.branch-popup .leaflet-popup-close-button {
+  color: #94a3b8;
+  font-size: 18px;
+  padding: 8px 10px;
+  top: 2px;
+  right: 2px;
+}
+.branch-popup .leaflet-popup-close-button:hover {
+  color: #1e3a5f;
+  background: transparent;
+}
+
 /* Section transition */
 .section-fade {
   opacity: 0;

@@ -36,7 +36,7 @@ export default function ProsesSection() {
           </h2>
           <p className="text-lg text-muted max-w-2xl mx-auto">
             Hanya 4 langkah untuk mendapatkan dana pinjaman gadai BPKB melalui
-            Adira Finance. Tanpa proses berbelit-belit, dana cair 1-2 hari kerja.
+            Adira Finance. Tanpa proses berbelit-belit, dana cair 1-3 hari kerja.
           </p>
         </div>
 
@@ -44,7 +44,7 @@ export default function ProsesSection() {
         <div className="hidden lg:block">
           <div className="relative">
             {/* Connector line */}
-            <div className="absolute top-12 left-[12.5%] right-[12.5%] h-0.5 bg-gradient-to-r from-primary via-secondary to-primary opacity-30" />
+            <div className="absolute top-12 left-[12.5%] right-[12.5%] h-0.5 bg-linear-to-r from-primary via-secondary to-primary opacity-30" />
 
             <div className="grid grid-cols-4 gap-6">
               {PROSES_STEPS.map((step, i) => {
@@ -114,7 +114,7 @@ export default function ProsesSection() {
                     )}
                   </div>
                   {!isLast && (
-                    <div className="w-0.5 flex-1 bg-gradient-to-b from-primary/40 to-secondary/20 my-2 min-h-8" />
+                    <div className="w-0.5 flex-1 bg-linear-to-b from-primary/40 to-secondary/20 my-2 min-h-8" />
                   )}
                 </div>
 
