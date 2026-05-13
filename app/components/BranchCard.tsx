@@ -1,11 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
 import { MapPin, ChevronRight } from "lucide-react";
-import { Branch } from "../lib/types";
+import { BranchCardData } from "../lib/types";
 import { getBranchImageUrl } from "../lib/api";
 
 interface BranchCardProps {
-  branch: Branch;
+  branch: BranchCardData;
 }
 
 export default function BranchCard({ branch }: BranchCardProps) {

@@ -6,6 +6,7 @@ import Footer from "../components/Footer";
 import BranchSearch from "../components/BranchSearch";
 import BranchMap from "../components/BranchMap";
 import { getBranches } from "../lib/api";
+import { BranchCardData } from "../lib/types";
 import { breadcrumbSchema } from "../lib/schema";
 import { SITE_URL } from "../lib/constants";
 
@@ -27,7 +28,24 @@ export const metadata: Metadata = {
 export default async function CabangPage() {
   const branches = await getBranches();
 
-  // Extract minimal pin data for the map — avoids serializing full Branch objects twice
+  // Slim card data — strip fields not used by BranchCard/BranchSearch
+  // (description, nextBranch, previousBranch, fax*, telp2/3, gmapsLink, lat/lng, timestamps, etc.)
+  const branchCards: BranchCardData[] = branches.map((b) => ({
+    branchId: b.branchId,
+    name: b.name,
+    slug: b.slug,
+    image: b.image,
+    address: b.address,
+    provinceId: b.provinceId,
+    telp1: b.telp1,
+    region: {
+      province: { province: b.region.province.province },
+      district: { district: b.region.district.district },
+      subDistrict: { subDistrict: b.region.subDistrict.subDistrict },
+    },
+  }));
+
+  // Separate slim map pins (lat/lng needed only for the map)
   const mapPins = branches
     .filter((b) => b.latitude && b.longitude)
     .map((b) => ({
@@ -111,7 +129,7 @@ export default async function CabangPage() {
                 </p>
               </div>
             ) : (
-              <BranchSearch branches={branches} />
+              <BranchSearch branches={branchCards} />
             )}
           </div>
         </section>
