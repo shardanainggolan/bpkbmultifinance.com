@@ -50,6 +50,23 @@ export interface Branch {
   previousBranch: BranchLink;
 }
 
+/** Slim type for the /cabang listing page — only fields BranchCard + BranchSearch actually use.
+ *  Keeps the RSC payload small; full Branch is only needed on individual branch detail pages. */
+export interface BranchCardData {
+  branchId: number;
+  name: string;
+  slug: string;
+  image: string;
+  address: string;
+  provinceId: string;
+  telp1: string;
+  region: {
+    province: { province: string };
+    district: { district: string };
+    subDistrict: { subDistrict: string };
+  };
+}
+
 export interface BranchListResponse {
   code: number;
   status: string;

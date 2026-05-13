@@ -43,7 +43,8 @@ export default function Navbar() {
               alt="Agen Resmi Adira Finance"
               width={220}
               height={64}
-              className="h-16 w-auto object-contain"
+              className="object-contain"
+              style={{ height: "4rem", width: "auto" }}
               priority
             />
           </Link>

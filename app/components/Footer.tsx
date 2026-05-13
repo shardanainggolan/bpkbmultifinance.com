@@ -39,7 +39,8 @@ export default function Footer() {
                 alt="dicicilaja.com"
                 width={120}
                 height={36}
-                className="h-9 w-auto object-contain"
+                className="object-contain"
+                style={{ height: "2.25rem", width: "auto" }}
               />
             </a>
           </div>
@@ -49,13 +50,14 @@ export default function Footer() {
         <div className="py-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <Link href="/" className="inline-block mb-5">
+            <Link href="/" className="inline-block mb-5 bg-white rounded-2xl px-4 py-2.5 hover:bg-white/90 transition-colors">
               <Image
                 src="/images/logo-agen-axi-adira.png"
                 alt="BPKB Multi Finance - Agen Resmi Adira Finance"
                 width={240}
                 height={70}
-                className="h-20 w-auto object-contain brightness-0 invert"
+                className="object-contain"
+                style={{ height: "4rem", width: "auto" }}
               />
             </Link>
             <p className="text-slate-300 text-sm leading-relaxed max-w-sm mb-5">
@@ -181,7 +183,8 @@ export default function Footer() {
                   alt="dicicilaja.com"
                   width={100}
                   height={30}
-                  className="h-8 w-auto object-contain"
+                  className="object-contain"
+                  style={{ height: "2rem", width: "auto" }}
                 />
               </a>
               <div className="flex items-center gap-1.5 bg-white/10 rounded-full px-4 py-2">

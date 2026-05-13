@@ -77,7 +77,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="id" className={inter.variable}>
+    <html lang="id" className={inter.variable} data-scroll-behavior="smooth">
       <head>
         {/* Preconnect: domain gambar cabang */}
         <link rel="preconnect" href="https://backend.adiracabang.id" />
