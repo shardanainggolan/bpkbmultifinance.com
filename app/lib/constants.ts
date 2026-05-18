@@ -23,6 +23,7 @@ export const NAV_LINKS = [
   { label: "Simulasi", href: "/#simulasi" },
   { label: "FAQ", href: "/#faq" },
   { label: "Cabang", href: "/cabang" },
+  { label: "Agen AXI", href: "/agen-axi" },
   { label: "Hubungi Kami", href: `https://wa.me/${WA_NUMBER}`, external: true },
 ];
 
@@ -182,6 +183,117 @@ export const FAQ_ITEMS = [
   {
     q: "Apakah bpkbmultifinance.id adalah website resmi Adira Finance?",
     a: "bpkbmultifinance.id adalah platform milik Agen AXI (Adira Xtra Income) terdaftar — program keagenan resmi yang dikelola oleh PT Adira Dinamika Multi Finance Tbk. Agen yang mengelola website ini adalah Sharda dengan ID Agen AXI 012625001169. Semua pengajuan diproses melalui sistem resmi Adira Finance dan BPKB nasabah tersimpan langsung di kantor cabang Adira Finance. Untuk informasi resmi Adira Finance, kunjungi www.adira.co.id.",
+  },
+];
+
+export const WA_MESSAGE_AXI =
+  "Halo, saya tertarik bergabung jadi Agen AXI Adira Finance. Mohon info pendaftaran.";
+
+export function getWaLinkAxi(): string {
+  return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(WA_MESSAGE_AXI)}`;
+}
+
+export const AXI_INCOME_TYPES = [
+  { id: 1, name: "Insentif Pribadi", frequency: "Harian", source: "Setiap penjualan pribadi yang berhasil" },
+  { id: 2, name: "Insentif Apresiasi", frequency: "Bulanan", source: "Bonus berdasarkan jumlah unit terjual" },
+  { id: 3, name: "Break The Limit (BTL)", frequency: "Bulanan", source: "Bonus berdasarkan nilai amount penjualan" },
+  { id: 4, name: "Insentif Mentor", frequency: "Bulanan", source: "Dari penjualan jaringan Rekan Bisnis 1–10" },
+  { id: 5, name: "Insentif Group", frequency: "6 Bulanan", source: "5–15% dari insentif Rekan Bisnis 1" },
+  { id: 6, name: "Bonus Tahunan", frequency: "Tahunan", source: "Rp 100rb–300rb/bulan per RB1 Excellent" },
+  { id: 7, name: "Bonus Loyalti", frequency: "3 Tahunan", source: "Akumulasi penjualan 3 tahun" },
+];
+
+export const AXI_MATRIX_LEVELS = [
+  { level: "Fair",      phRange: "> Rp 0 – Rp 50jt",    units: "< 8 unit",    multiplier: "1x",   highlight: false },
+  { level: "Good",      phRange: "Rp 50 – Rp 200jt",    units: "8 – 9 unit",  multiplier: "1x",   highlight: false },
+  { level: "Great",     phRange: "Rp 200 – Rp 350jt",   units: "10 – 14 unit",multiplier: "1x",   highlight: false },
+  { level: "Fantastic", phRange: "Rp 350 – Rp 500jt",   units: "15 – 19 unit",multiplier: "1,5x", highlight: true  },
+  { level: "Excellent", phRange: "> Rp 500jt",           units: "≥ 20 unit",   multiplier: "2x",   highlight: true  },
+];
+
+export const AXI_FAQ_ITEMS = [
+  {
+    q: "Apa itu Agen AXI Adira Finance?",
+    a: "AXI (Adira Xtra Income) adalah program keagenan resmi PT Adira Dinamika Multi Finance Tbk untuk individu atau badan hukum yang ingin mendapatkan penghasilan tambahan dengan menjual produk pembiayaan Adira Finance kepada calon nasabah.",
+  },
+  {
+    q: "Berapa biaya untuk menjadi Agen AXI?",
+    a: "Pendaftaran GRATIS untuk tahun pertama. Mulai tahun kedua, ada Annual Fee sebesar Rp 120.000/tahun.",
+  },
+  {
+    q: "Berapa lama proses pendaftaran Agen AXI?",
+    a: "ID AXI dikirimkan paling lama 1×24 jam (hari kerja) setelah dokumen lengkap diterima dan diverifikasi.",
+  },
+  {
+    q: "Apakah harus punya pengalaman berjualan?",
+    a: "Tidak harus. Adira Finance menyediakan AXI Training setiap Selasa & Jumat pukul 15.00–17.00 WIB untuk semua agen baru. Anda juga akan mendapat Mentor AXI senior yang membimbing langsung.",
+  },
+  {
+    q: "Kapan insentif dibayarkan?",
+    a: "Insentif Pribadi dibayar harian. Insentif Apresiasi, BTL, dan Mentor dibayar bulanan. Insentif Group per 6 bulan. Bonus Tahunan per 12 bulan. Bonus Loyalti per 3 tahun.",
+  },
+  {
+    q: "Bisakah AXI dilakukan sambil kerja atau sebagai side income?",
+    a: "Bisa! Salah satu keunggulan utama AXI adalah fleksibilitas waktu. Anda mengatur sendiri jam kerja, bisa bekerja dari mana saja dan kapan saja, tanpa kewajiban jam kantor.",
+  },
+  {
+    q: "Apakah AXI resmi dan aman?",
+    a: "100% resmi. AXI adalah program PT Adira Dinamika Multi Finance Tbk (IDX: ADMF), perusahaan publik yang terdaftar dan diawasi oleh Otoritas Jasa Keuangan (OJK), serta tergabung dalam MUFG Group.",
+  },
+  {
+    q: "Apakah saya akan mendapat bimbingan setelah mendaftar?",
+    a: "Ya. Setelah terdaftar sebagai AXI, Anda mendapat Mentor AXI senior yang membimbing langsung, akses ke AXI Training reguler setiap Selasa & Jumat, serta bergabung ke komunitas agen aktif.",
+  },
+];
+
+export const AXI_HOW_IT_WORKS = [
+  {
+    step: 1,
+    title: "Prospek Nasabah",
+    desc: "Setelah mendapat ID AXI, langsung lakukan prospek terhadap calon nasabah yang membutuhkan pembiayaan kendaraan atau gadai BPKB.",
+  },
+  {
+    step: 2,
+    title: "Submit Pengajuan",
+    desc: "Kirim Polling Order ke Adira via aplikasi Dicicilaja.com. Dibantu oleh tim senior jika butuh asistensi.",
+  },
+  {
+    step: 3,
+    title: "Survey & Verifikasi",
+    desc: "Tim Surveyor Adira melakukan survey kendaraan & verifikasi data nasabah. Proses cepat 1–3 hari kerja.",
+  },
+  {
+    step: 4,
+    title: "Dana Cair + Insentif",
+    desc: "Nasabah disetujui → Dana cair ke rekening nasabah → Insentif langsung masuk ke rekening AXI Anda.",
+  },
+];
+
+export const AXI_REGISTRATION_STEPS = [
+  {
+    step: 1,
+    title: "Hubungi Kami via WhatsApp",
+    desc: "Klik tombol WhatsApp, konsultasi gratis dengan Agen AXI senior kami. Tidak ada paksaan, tidak ada biaya konsultasi.",
+  },
+  {
+    step: 2,
+    title: "Siapkan Dokumen",
+    desc: "Foto KTP, catat nomor rekening bank aktif, siapkan email aktif. Cukup 5 menit dari HP Anda.",
+  },
+  {
+    step: 3,
+    title: "Submit Pendaftaran",
+    desc: "Tim kami membantu Anda submit pendaftaran via aplikasi Dicicilaja.com. Mudah, cepat, terpandu.",
+  },
+  {
+    step: 4,
+    title: "Terima ID AXI",
+    desc: "ID AXI dikirimkan ke email Anda dalam maksimal 1×24 jam hari kerja. Resmi terdaftar di sistem Adira Finance.",
+  },
+  {
+    step: 5,
+    title: "Mulai Earning!",
+    desc: "Langsung prospek calon nasabah dan dapatkan insentif pertama Anda. Ikuti AXI Training untuk percepat pertumbuhan.",
   },
 ];
 
