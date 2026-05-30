@@ -11,6 +11,11 @@ const nextConfig: NextConfig = {
         hostname: "backend.adiracabang.id",
         pathname: "/uploads/**",
       },
+      {
+        protocol: "https",
+        hostname: "article.adiracabang.id",
+        pathname: "/wp-content/uploads/**",
+      },
     ],
   },
 };
