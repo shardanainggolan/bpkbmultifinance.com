@@ -78,3 +78,43 @@ export interface BranchDetailResponse {
   status: string;
   data: Branch;
 }
+
+// ── WordPress REST API Types ──────────────────────────────────────────────────
+
+export interface WpMediaSize {
+  source_url: string;
+  width: number;
+  height: number;
+}
+
+export interface WpMedia {
+  id: number;
+  source_url: string;
+  alt_text: string;
+  media_details: {
+    width: number;
+    height: number;
+    sizes: {
+      thumbnail?: WpMediaSize;
+      medium?: WpMediaSize;
+      medium_large?: WpMediaSize;
+      large?: WpMediaSize;
+      full?: WpMediaSize;
+    };
+  };
+}
+
+export interface WpPost {
+  id: number;
+  slug: string;
+  date: string;
+  modified: string;
+  title: { rendered: string };
+  content: { rendered: string; protected: boolean };
+  excerpt: { rendered: string; protected: boolean };
+  featured_media: number;
+  categories: number[];
+  _embedded?: {
+    "wp:featuredmedia"?: WpMedia[];
+  };
+}

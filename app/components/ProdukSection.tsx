@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Car, CheckCircle, ChevronRight } from "lucide-react";
 import { PRODUK, getWaLink } from "../lib/constants";
 import { financialProductMobilSchema, financialProductMotorSchema } from "../lib/schema";
@@ -47,9 +48,12 @@ export default function ProdukSection() {
         {/* Product cards */}
         <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {PRODUK.map((produk, i) => {
-            const waMsg = produk.type === "mobil"
-              ? "Halo, saya ingin informasi pinjaman dana gadai BPKB Mobil di Adira Finance."
-              : "Halo, saya ingin informasi pinjaman dana gadai BPKB Motor di Adira Finance.";
+            const waMsg =
+              produk.type === "mobil"
+                ? "Halo, saya ingin informasi pinjaman dana gadai BPKB Mobil di Adira Finance."
+                : "Halo, saya ingin informasi pinjaman dana gadai BPKB Motor di Adira Finance.";
+            const detailHref =
+              produk.type === "mobil" ? "/gadai-bpkb-mobil" : "/gadai-bpkb-motor";
 
             return (
               <article
@@ -120,6 +124,15 @@ export default function ProdukSection() {
                     Ajukan {produk.title}
                     <ChevronRight size={18} />
                   </a>
+
+                  {/* Internal link to product detail page */}
+                  <Link
+                    href={detailHref}
+                    className="flex items-center justify-center gap-1.5 w-full mt-3 py-2.5 text-sm font-medium text-secondary hover:text-secondary-dark transition-colors border border-gray-100 hover:border-secondary rounded-2xl"
+                  >
+                    Pelajari Produk Ini Selengkapnya
+                    <ChevronRight size={14} />
+                  </Link>
                 </div>
               </article>
             );

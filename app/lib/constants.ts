@@ -23,7 +23,9 @@ export const NAV_LINKS = [
   { label: "Simulasi", href: "/#simulasi" },
   { label: "FAQ", href: "/#faq" },
   { label: "Cabang", href: "/cabang" },
+  { label: "Artikel", href: "/artikel" },
   { label: "Agen AXI", href: "/agen-axi" },
+  { label: "Tentang", href: "/tentang-adira-finance" },
   { label: "Hubungi Kami", href: `https://wa.me/${WA_NUMBER}`, external: true },
 ];
 
