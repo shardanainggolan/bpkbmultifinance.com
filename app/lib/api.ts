@@ -41,5 +41,5 @@ export async function getBranchBySlug(slug: string): Promise<Branch | null> {
 export function getBranchImageUrl(image: string): string {
   if (!image) return "/images/placeholder-branch.webp";
   if (image.startsWith("http")) return image;
-  return `https://backend.adiracabang.id/uploads/branches/${image}`;
+  return `https://backend.bpkbmultifinance.id/uploads/branches/${image}`;
 }

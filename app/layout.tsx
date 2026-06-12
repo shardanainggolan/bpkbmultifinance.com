@@ -80,8 +80,8 @@ export default function RootLayout({
     <html lang="id" className={inter.variable} data-scroll-behavior="smooth">
       <head>
         {/* Preconnect: domain gambar cabang */}
-        <link rel="preconnect" href="https://backend.adiracabang.id" />
-        <link rel="dns-prefetch" href="https://backend.adiracabang.id" />
+        <link rel="preconnect" href="https://backend.bpkbmultifinance.id" />
+        <link rel="dns-prefetch" href="https://backend.bpkbmultifinance.id" />
         {/* Preconnect: Google Analytics — kurangi latency saat script GA dimuat */}
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
