@@ -237,7 +237,7 @@ export function localBusinessSchema(branch: Branch) {
     alternateName: `Adira ${locationName}`,
     description: branch.description,
     image: branch.image
-      ? `https://backend.adiracabang.id/uploads/${branch.image}`
+      ? `https://backend.bpkbmultifinance.id/uploads/${branch.image}`
       : undefined,
     url: `${SITE_URL}/cabang/${branch.slug}`,
     telephone: phones[0] || undefined,

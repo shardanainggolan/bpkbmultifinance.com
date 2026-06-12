@@ -13,8 +13,8 @@ export function getWaLinkBranch(_branchName: string): string {
   return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(WA_MESSAGE_DEFAULT)}`;
 }
 
-export const API_BASE_URL = "https://backend.adiracabang.id";
-export const API_IMAGE_BASE = "https://backend.adiracabang.id/uploads";
+export const API_BASE_URL = "https://backend.bpkbmultifinance.id";
+export const API_IMAGE_BASE = "https://backend.bpkbmultifinance.id/uploads";
 
 export const NAV_LINKS = [
   { label: "Beranda", href: "/" },

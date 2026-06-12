@@ -8,12 +8,12 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "backend.adiracabang.id",
+        hostname: "backend.bpkbmultifinance.id",
         pathname: "/uploads/**",
       },
       {
         protocol: "https",
-        hostname: "article.adiracabang.id",
+        hostname: "article.bpkbmultifinance.id",
         pathname: "/wp-content/uploads/**",
       },
     ],
