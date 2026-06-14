@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     "simulasi pinjaman adira mobil",
     "simulasi pinjaman adira motor",
   ],
-  alternates: { canonical: `${SITE_URL}/simulasi` },
+  alternates: { canonical: `${SITE_URL}/simulasi-adira-finance` },
   robots: {
     index: true,
     follow: true,
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     title: "Simulasi Adira Finance — Kalkulator Cicilan Gadai BPKB",
     description:
       "Hitung simulasi Adira gadai BPKB mobil dan motor secara interaktif. Estimasi cicilan, tenor, dan plafon langsung tampil di layar.",
-    url: `${SITE_URL}/simulasi`,
+    url: `${SITE_URL}/simulasi-adira-finance`,
     type: "website",
     locale: "id_ID",
     siteName: "BPKB Multi Finance - Agen Resmi Adira Finance",
@@ -88,7 +88,7 @@ const STEP_GUIDE = [
 export default function SimulasiPage() {
   const breadcrumb = breadcrumbSchema([
     { name: "Beranda", url: SITE_URL },
-    { name: "Simulasi Adira Finance", url: `${SITE_URL}/simulasi` },
+    { name: "Simulasi Adira Finance", url: `${SITE_URL}/simulasi-adira-finance` },
   ]);
   const faq = faqSchema(FAQ_SIMULASI);
 
@@ -96,10 +96,10 @@ export default function SimulasiPage() {
   const webAppSchema = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "@id": `${SITE_URL}/simulasi#kalkulator`,
+    "@id": `${SITE_URL}/simulasi-adira-finance#kalkulator`,
     name: "Kalkulator Simulasi Adira Finance",
     alternateName: ["Simulasi Adira", "Simulasi Kredit Adira", "Simulasi Cicilan Adira Finance"],
-    url: `${SITE_URL}/simulasi`,
+    url: `${SITE_URL}/simulasi-adira-finance`,
     applicationCategory: "FinanceApplication",
     operatingSystem: "Any",
     browserRequirements: "Requires JavaScript",

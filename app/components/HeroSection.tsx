@@ -89,7 +89,7 @@ export default function HeroSection() {
                 Ajukan Pinjaman Sekarang
               </a>
               <Link
-                href="/#simulasi"
+                href="/simulasi-adira-finance"
                 className="flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 border border-white/30 text-white font-semibold px-8 py-4 rounded-full text-lg transition-all duration-200"
               >
                 Simulasi Pinjaman
