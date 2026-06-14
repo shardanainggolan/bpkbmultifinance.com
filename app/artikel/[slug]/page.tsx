@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { ChevronRight, Calendar, Clock, BookOpen } from "lucide-react";
+import { ChevronRight, Calendar, Clock, BookOpen, Users, ShieldCheck } from "lucide-react";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import ShareButtons from "../../components/artikel/ShareButtons";
@@ -20,6 +20,12 @@ import { breadcrumbSchema } from "../../lib/schema";
 
 export const revalidate = 3600;
 export const dynamicParams = true;
+
+const AUTHOR = {
+  name: "Tim bpkbmultifinance.id",
+  role: "Tim Editorial · Agen Resmi Adira Finance",
+  bio: "Tim bpkbmultifinance.id terdiri dari Agen AXI (Adira Xtra Income) resmi terdaftar yang sehari-hari mendampingi nasabah dalam pengajuan dan pengelolaan pinjaman gadai BPKB di kantor cabang Adira Finance. Setiap artikel disusun mengacu pada sumber resmi PT Adira Dinamika Multi Finance Tbk.",
+};
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -94,11 +100,14 @@ export default async function ArtikelDetailPage({ params }: Props) {
       },
     },
     author: {
-      "@type": "Person",
-      name: "Tim BPKB Multi Finance",
+      "@type": "Organization",
+      name: AUTHOR.name,
+      url: SITE_URL,
+      description: AUTHOR.bio,
       affiliation: {
         "@type": "Organization",
         name: "PT Adira Dinamika Multi Finance Tbk",
+        url: "https://www.adira.co.id",
       },
     },
     mainEntityOfPage: {
@@ -166,7 +175,18 @@ export default async function ArtikelDetailPage({ params }: Props) {
             <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-secondary leading-tight mb-5">
               {post.title.rendered}
             </h1>
-            <div className="flex flex-wrap items-center gap-5 text-sm text-muted pb-6 border-b border-gray-100">
+            <div className="flex flex-wrap items-center gap-x-5 gap-y-3 text-sm text-muted pb-6 border-b border-gray-100">
+              <span className="flex items-center gap-2">
+                <span
+                  className="w-7 h-7 rounded-full bg-secondary text-primary flex items-center justify-center shrink-0"
+                  aria-hidden="true"
+                >
+                  <Users size={14} />
+                </span>
+                <span className="font-semibold text-secondary" rel="author">
+                  {AUTHOR.name}
+                </span>
+              </span>
               <span className="flex items-center gap-1.5">
                 <Calendar size={15} />
                 <time dateTime={post.date}>{formatDate(post.date)}</time>
@@ -183,6 +203,35 @@ export default async function ArtikelDetailPage({ params }: Props) {
             className="article-content"
             dangerouslySetInnerHTML={{ __html: post.content.rendered }}
           />
+
+          {/* Author bio card — strengthens E-E-A-T */}
+          <aside
+            className="mt-10 bg-muted-light rounded-2xl p-6 sm:p-7 flex flex-col sm:flex-row gap-5 sm:items-start"
+            aria-label="Tentang penulis"
+          >
+            <div
+              className="shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-secondary text-primary flex items-center justify-center shadow-sm self-center sm:self-start"
+              aria-hidden="true"
+            >
+              <Users size={32} />
+            </div>
+            <div className="flex-1 text-center sm:text-left">
+              <div className="flex items-center justify-center sm:justify-start gap-2 flex-wrap mb-1">
+                <h2 className="font-bold text-secondary text-base">
+                  {AUTHOR.name}
+                </h2>
+                <span
+                  className="inline-flex items-center gap-1 bg-secondary/10 text-secondary text-[11px] font-semibold px-2 py-0.5 rounded-full"
+                  title="Tim terverifikasi sebagai Agen AXI resmi Adira Finance"
+                >
+                  <ShieldCheck size={11} />
+                  Verified
+                </span>
+              </div>
+              <p className="text-muted text-xs font-medium mb-3">{AUTHOR.role}</p>
+              <p className="text-muted text-sm leading-relaxed">{AUTHOR.bio}</p>
+            </div>
+          </aside>
 
           {/* Share + CTA */}
           <div className="mt-10 pt-8 border-t border-gray-100 space-y-6">

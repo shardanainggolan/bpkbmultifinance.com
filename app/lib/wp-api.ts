@@ -16,6 +16,49 @@ async function wpFetch(path: string, revalidate = 3600): Promise<Response> {
   });
 }
 
+// WordPress `wptexturize()` converts typographic characters (hyphen → en-dash,
+// straight quotes → smart quotes, ...) and the REST API returns them as
+// numeric HTML entities (&#8211;, &#8217;, etc). React renders them as
+// literal text, so we must decode before display.
+export function decodeHtmlEntities(text: string): string {
+  if (!text) return text;
+  return text
+    // Decimal numeric entities: &#8211; → –
+    .replace(/&#(\d+);/g, (_, code) => String.fromCharCode(parseInt(code, 10)))
+    // Hex numeric entities: &#x2013; → –
+    .replace(/&#x([0-9a-f]+);/gi, (_, code) => String.fromCharCode(parseInt(code, 16)))
+    // Named entities (order matters: &amp; last so it doesn't double-decode)
+    .replace(/&nbsp;/g, " ")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/&apos;/g, "'")
+    .replace(/&hellip;/g, "…")
+    .replace(/&ndash;/g, "–")
+    .replace(/&mdash;/g, "—")
+    .replace(/&lsquo;/g, "‘")
+    .replace(/&rsquo;/g, "’")
+    .replace(/&ldquo;/g, "“")
+    .replace(/&rdquo;/g, "”")
+    .replace(/&laquo;/g, "«")
+    .replace(/&raquo;/g, "»")
+    .replace(/&copy;/g, "©")
+    .replace(/&reg;/g, "®")
+    .replace(/&trade;/g, "™")
+    .replace(/&amp;/g, "&");
+}
+
+// Normalize a post coming from WP REST API so display-ready fields contain
+// real characters instead of HTML entities. Keeps `content.rendered` untouched
+// because it's injected via dangerouslySetInnerHTML and the browser decodes it.
+function normalizePost(post: WpPost): WpPost {
+  return {
+    ...post,
+    title: { ...post.title, rendered: decodeHtmlEntities(post.title.rendered) },
+    excerpt: { ...post.excerpt, rendered: decodeHtmlEntities(post.excerpt.rendered) },
+  };
+}
+
 export async function getArticles(page = 1): Promise<{
   posts: WpPost[];
   totalPages: number;
@@ -28,7 +71,8 @@ export async function getArticles(page = 1): Promise<{
     if (!res.ok) return { posts: [], totalPages: 0, total: 0 };
     const totalPages = parseInt(res.headers.get("X-WP-TotalPages") ?? "0", 10);
     const total = parseInt(res.headers.get("X-WP-Total") ?? "0", 10);
-    const posts: WpPost[] = await res.json();
+    const raw: WpPost[] = await res.json();
+    const posts = raw.map(normalizePost);
     return { posts, totalPages, total };
   } catch {
     return { posts: [], totalPages: 0, total: 0 };
@@ -55,7 +99,7 @@ export async function getArticleBySlug(slug: string): Promise<WpPost | null> {
     );
     if (!res.ok) return null;
     const posts: WpPost[] = await res.json();
-    return posts[0] ?? null;
+    return posts[0] ? normalizePost(posts[0]) : null;
   } catch {
     return null;
   }
@@ -70,7 +114,8 @@ export async function getRelatedArticles(
       `/posts?categories=${WP_CAT_ID}&exclude=${excludeId}&per_page=${limit}&_embed=wp:featuredmedia`
     );
     if (!res.ok) return [];
-    return await res.json();
+    const raw: WpPost[] = await res.json();
+    return raw.map(normalizePost);
   } catch {
     return [];
   }
@@ -122,14 +167,7 @@ export function formatDate(dateStr: string): string {
 }
 
 export function stripHtml(html: string): string {
-  return html
-    .replace(/<[^>]+>/g, "")
-    .replace(/&nbsp;/g, " ")
-    .replace(/&amp;/g, "&")
-    .replace(/&lt;/g, "<")
-    .replace(/&gt;/g, ">")
-    .replace(/&quot;/g, '"')
-    .replace(/&#039;/g, "'")
+  return decodeHtmlEntities(html.replace(/<[^>]+>/g, ""))
     .replace(/\s+/g, " ")
     .trim();
 }
