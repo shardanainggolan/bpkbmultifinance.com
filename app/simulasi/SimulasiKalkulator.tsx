@@ -643,7 +643,7 @@ export default function SimulasiKalkulator() {
           {/* Plafon Info */}
           <div className="bg-secondary rounded-3xl p-6">
             <h3 className="font-bold text-white text-sm mb-4">Plafon Pinjaman Kendaraan Ini</h3>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="bg-white/10 rounded-2xl p-4 text-center">
                 <p className="text-slate-300 text-xs mb-1">Minimal Pencairan</p>
                 <p className="font-bold text-white text-lg">{infoPencairan.min_pencairan_prefix}</p>
@@ -662,7 +662,7 @@ export default function SimulasiKalkulator() {
               title="Jumlah Pencairan"
               subtitle={`Masukkan nominal antara ${infoPencairan.min_pencairan_prefix} — ${infoPencairan.maks_pencairan_prefix}`}
             />
-            <div className="flex gap-3">
+            <div className="flex flex-col sm:flex-row gap-3">
               <div className="relative flex-1">
                 <span className="absolute left-4 top-1/2 -translate-y-1/2 text-muted text-sm font-semibold pointer-events-none select-none">Rp</span>
                 <input
@@ -676,7 +676,7 @@ export default function SimulasiKalkulator() {
               <button
                 onClick={handleUlang}
                 disabled={!pencairan || loadingUlang}
-                className="shrink-0 flex items-center gap-2 bg-secondary hover:bg-secondary-dark disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold px-5 py-3 rounded-xl transition-colors text-sm"
+                className="flex items-center justify-center gap-2 bg-secondary hover:bg-secondary-dark disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold px-5 py-3 rounded-xl transition-colors text-sm sm:shrink-0 w-full sm:w-auto"
               >
                 {loadingUlang ? <Loader2 size={16} className="animate-spin" /> : <Calculator size={16} />}
                 Hitung Ulang
