@@ -20,7 +20,7 @@ export const NAV_LINKS = [
   { label: "Beranda", href: "/" },
   { label: "Produk", href: "/#produk" },
   { label: "Syarat", href: "/#syarat" },
-  { label: "Simulasi", href: "/simulasi" },
+  { label: "Simulasi", href: "/simulasi-adira-finance" },
   { label: "FAQ", href: "/#faq" },
   { label: "Cabang", href: "/cabang" },
   { label: "Artikel", href: "/artikel" },
