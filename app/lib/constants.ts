@@ -298,34 +298,3 @@ export const AXI_REGISTRATION_STEPS = [
     desc: "Langsung prospek calon nasabah dan dapatkan insentif pertama Anda. Ikuti AXI Training untuk percepat pertumbuhan.",
   },
 ];
-
-export const TESTIMONI = [
-  {
-    name: "Budi Santoso",
-    kota: "Jakarta Selatan",
-    rating: 5,
-    text: "Prosesnya sangat cepat dan mudah! Dalam 2 hari kerja dana sudah cair ke rekening saya. Tim agen sangat membantu menjelaskan semua persyaratan. Recommended banget!",
-    pinjaman: "BPKB Mobil",
-  },
-  {
-    name: "Sri Wahyuni",
-    kota: "Bekasi",
-    rating: 5,
-    text: "Saya butuh dana cepat untuk modal usaha. Alhamdulillah dengan gadai BPKB motor di Adira Finance prosesnya sangat lancar. Tidak ribet dan tidak perlu titip kendaraan.",
-    pinjaman: "BPKB Motor",
-  },
-  {
-    name: "Ahmad Fauzi",
-    kota: "Tangerang",
-    rating: 5,
-    text: "Awalnya saya ragu-ragu, tapi setelah konsultasi via WhatsApp semua jelas. Dokumen saya lengkap dan dalam hitungan hari pinjaman langsung approved. Terima kasih!",
-    pinjaman: "BPKB Mobil",
-  },
-  {
-    name: "Dewi Rahayu",
-    kota: "Depok",
-    rating: 4,
-    text: "Pelayanan ramah dan profesional. Bunga kompetitif dibanding tempat lain. Proses survei juga cepat, tim Adira Finance langsung datang ke rumah saya.",
-    pinjaman: "BPKB Motor",
-  },
-];
