@@ -7,7 +7,6 @@ import SimulasiSection from "./components/SimulasiSection";
 import SyaratSection from "./components/SyaratSection";
 import ProsesSection from "./components/ProsesSection";
 import FAQSection from "./components/FAQSection";
-import TestimoniSection from "./components/TestimoniSection";
 import TentangAdiraSection from "./components/TentangAdiraSection";
 import CabangPreviewSection from "./components/CabangPreviewSection";
 import CTASection from "./components/CTASection";
@@ -54,7 +53,6 @@ export default async function HomePage() {
         <SyaratSection />
         <ProsesSection />
         <FAQSection />
-        <TestimoniSection />
         <TentangAdiraSection />
         <CabangPreviewSection branches={branches} />
         <CTASection />
