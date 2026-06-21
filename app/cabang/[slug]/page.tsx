@@ -5,8 +5,13 @@ import { notFound } from "next/navigation";
 import { MapPin, ChevronRight } from "lucide-react";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
-import BranchNavigation from "../../components/BranchNavigation";
-import { getBranches, getBranchBySlug, getBranchImageUrl } from "../../lib/api";
+import NearbyBranches from "../../components/NearbyBranches";
+import {
+  getBranches,
+  getBranchBySlug,
+  getBranchImageUrl,
+  getNearbyBranches,
+} from "../../lib/api";
 import { localBusinessSchema, breadcrumbSchema, faqSchema } from "../../lib/schema";
 import { SITE_URL, getWaLinkBranch } from "../../lib/constants";
 
@@ -29,21 +34,27 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const branch = await getBranchBySlug(slug);
 
+  // console.log(branch)
+
   if (!branch) {
     return {
       title: "Cabang tidak ditemukan",
     };
   }
 
-  const locationName = getLocationName(branch.name);
-  const district = branch.region.district.district;
-  const province = branch.region.province.province;
   // Title: brand + location first — matches navigational intent "adira daan mogot", "adira depok"
-  const title = `${branch.name} - Gadai BPKB Mobil & Motor | Adira Finance`;
-  const description = `Ajukan pinjaman gadai BPKB di ${branch.name}, ${locationName}. ${branch.description} Alamat: ${branch.address}, ${district}, ${province}.${branch.telp1 ? ` Telp: ${branch.telp1}.` : ""} Proses 1–3 hari kerja.`;
+  const title = `${branch.name} - Gadai BPKB`;
+
+  // Meta description: service + branch + speed benefit, then the physical address.
+  // Serves navigational ("adira <area>") + local transactional intent at once.
+  const capitalize = (s: string) =>
+    s.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase());
+  const subDistrict = capitalize(branch.region.subDistrict.subDistrict);
+  const district = capitalize(branch.region.district.district);
+  const description = `Gadai BPKB di ${branch.name}, dana cair 1–3 hari kerja. Kunjungi cabang di ${branch.address} di ${subDistrict}, ${district}`;
 
   return {
-    title,
+    title: { absolute: title },
     description,
     openGraph: {
       title,
@@ -66,9 +77,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function BranchDetailPage({ params }: Props) {
   const { slug } = await params;
-  const branch = await getBranchBySlug(slug);
+  const [branch, allBranches] = await Promise.all([
+    getBranchBySlug(slug),
+    getBranches(),
+  ]);
 
   if (!branch) notFound();
+
+  const nearbyBranches = getNearbyBranches(branch, allBranches, 3);
 
   const faxes = [branch.fax1, branch.fax2, branch.fax3].filter(Boolean);
 
@@ -205,8 +221,7 @@ export default async function BranchDetailPage({ params }: Props) {
                   <p className="font-semibold text-secondary">{branch.name}</p>
                   <p>{branch.address}</p>
                   <p>
-                    Kel. {branch.region.subDistrict.subDistrict}, Kec. —,{" "}
-                    {branch.region.district.district}
+                    Kec. {branch.region.subDistrict.subDistrict}, {branch.region.district.district}
                   </p>
                   <p>
                     {branch.region.province.province}{" "}
@@ -398,16 +413,8 @@ export default async function BranchDetailPage({ params }: Props) {
                 </div>
               </div>
 
-              {/* Branch navigation */}
-              <div>
-                <h2 className="text-lg font-bold text-secondary mb-4">
-                  Cabang Lainnya
-                </h2>
-                <BranchNavigation
-                  previous={branch.previousBranch}
-                  next={branch.nextBranch}
-                />
-              </div>
+              {/* Nearby branches — sorted by geodesic distance from this branch */}
+              <NearbyBranches branches={nearbyBranches} currentName={branch.name} />
             </div>
 
             {/* Sidebar */}
